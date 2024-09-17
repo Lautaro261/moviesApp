@@ -8,14 +8,17 @@ export const useMovies = () => {
   const [nowPlaying, setNowPlaying] = useState<Movie[]>([]);
 
   const initialLoad = async () => {
-    const nowPlayingMovies = await UseCases.moviesNowPlayingUseCase(
-      movieDBFetcher,
-    );
+    const nowPlayingMovies = await UseCases.moviesNowPlayingUseCase(movieDBFetcher);
+
+    //console.log(nowPlayingMovies[0]);
   };
 
   useEffect(() => {
     initialLoad();
   }, []);
 
-  return {};
+  return {
+    isLoading,
+    nowPlaying,
+  };
 };
