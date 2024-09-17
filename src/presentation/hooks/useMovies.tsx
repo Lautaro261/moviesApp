@@ -6,11 +6,39 @@ import {movieDBFetcher} from '../../config/adapters/movieDB.adapter';
 export const useMovies = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [nowPlaying, setNowPlaying] = useState<Movie[]>([]);
+  const [popular, setPopular] = useState<Movie[]>([]);
+  const [topRated, setTopRated] = useState<Movie[]>([]);
+  const [upcoming, setUpcoming] = useState<Movie[]>([]);
 
   const initialLoad = async () => {
-    const nowPlayingMovies = await UseCases.moviesNowPlayingUseCase(movieDBFetcher);
+    const nowPlayingPromise = UseCases.moviesNowPlayingUseCase(movieDBFetcher);
+    const popularPromise = UseCases.moviesPopularUseCase(movieDBFetcher);
+    const topRatedPromise = UseCases.moviesTopRatedUseCase(movieDBFetcher);
+    const upcomingPromise = UseCases.moviesUpcomingUseCase(movieDBFetcher);
 
-    //console.log(nowPlayingMovies[0]);
+    const [
+      nowPlayingMovies,
+      popularMovies,
+      topRatedMovies,
+      upcomingMovies,
+    ] = await Promise.all([
+      nowPlayingPromise,
+      popularPromise,
+      topRatedPromise,
+      upcomingPromise,
+    ]);
+
+    setNowPlaying(nowPlayingMovies);
+    setPopular(popularMovies);
+    setTopRated(topRatedMovies);
+    setUpcoming(upcomingMovies);
+
+    setIsLoading(false);
+
+    //console.log(nowPlayingMovies[0]); chequeado
+    //console.log(popularMovies[0]); chequeado
+    //console.log(topRatedMovies[0]); chequeado
+    //console.log(upcomingMovies[0]); chequeado
   };
 
   useEffect(() => {
@@ -20,5 +48,8 @@ export const useMovies = () => {
   return {
     isLoading,
     nowPlaying,
+    popular,
+    topRated,
+    upcoming,
   };
 };
