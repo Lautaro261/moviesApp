@@ -9,3 +9,13 @@ export interface Movie {
     poster: string;
     backdrop: string;
 }
+
+/* NOTA: cuando uso el "extends" quiere decir que extiendo las propiedades de la interface
+en este caso FullMovie toma todas pas propiedades de Movie y le agrego unas nuevas. */
+export interface FullMovie extends Movie{
+    genres: string[];
+    duration: number;
+    budget: number;
+    originalTitle: string;
+    productionCompanies: string[];
+}

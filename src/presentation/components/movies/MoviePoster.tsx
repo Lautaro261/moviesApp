@@ -1,4 +1,3 @@
-/* eslint-disable react-native/no-inline-styles */
 import React from 'react';
 import {View, Image, StyleSheet, Pressable} from 'react-native';
 import {Movie} from '../../../core/entities/movie.entity';
