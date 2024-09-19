@@ -1,11 +1,12 @@
 /* eslint-disable react-native/no-inline-styles */
 import React from 'react';
-import { View, Text } from 'react-native';
+import { View } from 'react-native';
 import { useMovies } from '../../hooks/useMovies';
 import { ScrollView } from 'react-native-gesture-handler';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { PosterCarrusel } from '../../components/movies/PosterCarrusel';
 import { HorizontalCarousel } from '../../components/movies/HorizontalCarousel';
+import { FullScreenLoader } from '../../components/loaders/FullScreenLoader';
 
 export const HomeScreen = () => {
 
@@ -15,7 +16,7 @@ export const HomeScreen = () => {
 
   if(isLoading){
     return(
-      <Text>Cargando...</Text>
+      <FullScreenLoader/>
     );
   }
 
@@ -26,7 +27,6 @@ export const HomeScreen = () => {
         paddingBottom:30,
       }} >
 
-        <Text>Hola</Text>
         {/* Carrusel Principal */}
         <PosterCarrusel movies={nowPlaying}/>
 
