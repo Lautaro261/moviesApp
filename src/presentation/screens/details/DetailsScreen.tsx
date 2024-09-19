@@ -14,7 +14,7 @@ export const DetailsScreen = ({route}:Props) => {
 
   const {movieId} = route.params;
 
-  const {movie, isLoading } = useMovie(movieId);
+  const {movie, isLoading, cast } = useMovie(movieId);
 
   //const { movieId } = useRoute().params;
 
@@ -34,7 +34,7 @@ export const DetailsScreen = ({route}:Props) => {
       />
 
       {/* DEtails */}
-      <MovieDetails movie={movie!}/>
+      <MovieDetails movie={movie!} cast={cast!}/>
     </ScrollView>
   );
 };

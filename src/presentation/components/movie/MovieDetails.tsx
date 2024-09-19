@@ -3,12 +3,14 @@ import React from 'react';
 import { View, Text} from 'react-native';
 import { FullMovie } from '../../../core/entities/movie.entity';
 import { Formatter } from '../../../config/helpers/formatter';
+import { Cast } from '../../../core/entities/cast.entity';
 
 interface Props {
     movie: FullMovie;
+    cast: Cast[];
 }
 
-export const MovieDetails = ({movie}: Props) => {
+export const MovieDetails = ({movie, cast}: Props) => {
   return (
     <>
     <View style={{marginHorizontal: 20}}>
